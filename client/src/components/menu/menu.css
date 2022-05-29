@@ -1,0 +1,63 @@
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+body {
+    background: aqua;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+}
+
+.menu{
+    width: 300px;
+    margin: 30px;
+}
+
+.menu .menu-btn {
+    padding: 15px 20px;
+    align-items: center; 
+    justify-content: space-between;   
+    display: flex;
+    background-color: #2D3748;
+    font-variant : small-caps;
+    border: white;
+    color: white;
+    height: 80px;
+    width: 462px;
+    border-style:outset;
+    border-radius: 7px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.menu .menu-content {
+   
+   position: absolute;
+   top:103%;
+   padding: 15px;
+   background:whitesmoke;
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+   font-weight: bold;
+    width: 20%;
+    border-width: 3px;
+    
+}
+
+.menu .menu-content .menu-item{
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 18px;
+    
+    
+}
+
+.menu .menu-content .menu-item:hover{
+    background-color: #319795;
+}
