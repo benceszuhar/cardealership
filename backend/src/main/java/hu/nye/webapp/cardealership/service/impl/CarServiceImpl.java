@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import hu.nye.webapp.cardealership.dto.CarDTO;
 import hu.nye.webapp.cardealership.entity.Car;
+import hu.nye.webapp.cardealership.exception.CarNotFoundException;
 import hu.nye.webapp.cardealership.repository.CarRepository;
 import hu.nye.webapp.cardealership.service.CarService;
 
