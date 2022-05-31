@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,11 @@ import hu.nye.webapp.cardealership.dto.CarDTO;
 import hu.nye.webapp.cardealership.exception.InvalidCarRequestException;
 import hu.nye.webapp.cardealership.service.CarService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/cars")
 public class CarController {
-    
+
     private final CarService carService;
 
     public CarController(CarService carService) {
@@ -42,7 +44,7 @@ public class CarController {
         Optional<CarDTO> car = carService.findById(rendszam);
 
         return car.map(ResponseEntity::ok)
-            .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -52,7 +54,7 @@ public class CarController {
         CarDTO savedCar = carService.create(carDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(savedCar);
+                .body(savedCar);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -62,7 +64,7 @@ public class CarController {
         CarDTO updatedCar = carService.update(carDTO);
 
         return ResponseEntity.ok()
-            .body(updatedCar);
+                .body(updatedCar);
     }
 
     @RequestMapping(path = "/{rendszam}", method = RequestMethod.DELETE)
@@ -75,9 +77,9 @@ public class CarController {
     private void checkForRequestErrors(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> messages = bindingResult.getFieldErrors()
-                .stream()
-                .map(this::fieldErrorToMessage)
-                .collect(Collectors.toList());
+                    .stream()
+                    .map(this::fieldErrorToMessage)
+                    .collect(Collectors.toList());
 
             throw new InvalidCarRequestException("Invalid car request", messages);
         }
@@ -86,6 +88,5 @@ public class CarController {
     private String fieldErrorToMessage(FieldError fieldError) {
         return fieldError.getField() + " - " + fieldError.getDefaultMessage();
     }
-
 
 }
