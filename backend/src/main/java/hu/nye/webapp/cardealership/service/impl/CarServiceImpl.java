@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDTO create(CarDTO carDTO) {
-        carDTO.setRendszam(null);
+        carDTO.setRendszam(carDTO.getRendszam());
 
         Car carToSave = modelMapper.map(carDTO, Car.class);
         Car savedCar = carRepository.save(carToSave);
