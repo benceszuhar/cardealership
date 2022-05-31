@@ -1,45 +1,33 @@
 package hu.nye.webapp.cardealership.dto;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Calendar;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 public class CarDTO {
-    
 
-    @NotBlank
+    @Id
     private String rendszam;
 
-    @NotBlank
     private String marka;
 
-    @NotBlank
     private String tipus;
 
-    @NotBlank
-    @Min(value = 1886)
-    @Max(value = Calendar.YEAR)
     private int evjarat;
 
-    @NotBlank
-    @Min(value = 0)
-    @Max(value = 10000)
     private int motorterfogat;
 
-    @NotBlank
     private String uzemanyagfajta;
 
-    @NotBlank
-    @Min(value = 0)
-    @Max(value = 1000000)
     private int km_allas;
 
-    @NotBlank
     private String szin;
 
-    @Min(value = 0)
     private int ar;
 
     public CarDTO() {
