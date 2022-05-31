@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:cardealership
+    username: admin
+    password: password
+  h2:
+    console:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
