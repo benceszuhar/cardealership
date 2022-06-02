@@ -2,16 +2,12 @@ package hu.nye.webapp.cardealership.dto;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Calendar;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 public class CarDTO {
 
     @Id
+    private Long Id;
+
     private String rendszam;
 
     private String marka;
@@ -34,7 +30,8 @@ public class CarDTO {
     }
 
 
-    public CarDTO(String rendszam, String marka, String tipus, int evjarat, int motorterfogat, String uzemanyagfajta, int km_allas, String szin, int ar) {
+    public CarDTO(Long Id, String rendszam, String marka, String tipus, int evjarat, int motorterfogat, String uzemanyagfajta, int km_allas, String szin, int ar) {
+        this.Id = Id;
         this.rendszam = rendszam;
         this.marka = marka;
         this.tipus = tipus;
@@ -44,6 +41,14 @@ public class CarDTO {
         this.km_allas = km_allas;
         this.szin = szin;
         this.ar = ar;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
     }
 
     public String getRendszam() {

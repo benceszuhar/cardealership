@@ -9,11 +9,11 @@ public interface CarService {
     
     List<CarDTO> findAll();
 
-    Optional<CarDTO> findById(String rendszam);
+    Optional<CarDTO> findById(Long Id);
 
     CarDTO create(CarDTO carDTO);
 
     CarDTO update(CarDTO carDTO);
 
-    void delete(String rendszam);
+    void delete(Long Id);
 }
