@@ -39,9 +39,9 @@ public class CarController {
         return ResponseEntity.ok().body(cars);
     }
 
-    @RequestMapping(path = "/{rendszam}", method = RequestMethod.GET)
-    public ResponseEntity<CarDTO> findById(@PathVariable String rendszam) {
-        Optional<CarDTO> car = carService.findById(rendszam);
+    @RequestMapping(path = "/{Id}", method = RequestMethod.GET)
+    public ResponseEntity<CarDTO> findById(@PathVariable Long Id) {
+        Optional<CarDTO> car = carService.findById(Id);
 
         return car.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -68,9 +68,9 @@ public class CarController {
                 .body(updatedCar);
     }
 
-    @RequestMapping(path = "/{rendszam}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable String rendszam) {
-        carService.delete(rendszam);
+    @RequestMapping(path = "/{Id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable Long Id) {
+        carService.delete(Id);
 
         return ResponseEntity.noContent().build();
     }

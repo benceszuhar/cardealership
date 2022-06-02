@@ -33,14 +33,14 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Optional<CarDTO> findById(String rendszam) {
-        return carRepository.findById(rendszam)
+    public Optional<CarDTO> findById(Long Id) {
+        return carRepository.findById(Id)
                 .map(m -> modelMapper.map(m, CarDTO.class));
     }
 
     @Override
     public CarDTO create(CarDTO carDTO) {
-        carDTO.setRendszam(carDTO.getRendszam());
+        carDTO.setId(carDTO.getId());
 
         Car carToSave = modelMapper.map(carDTO, Car.class);
         Car savedCar = carRepository.save(carToSave);
@@ -50,11 +50,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDTO update(CarDTO carDTO) {
-        String rendszam = carDTO.getRendszam();
-        Optional<Car> carToUpdate = carRepository.findById(rendszam);
+        Long Id = carDTO.getId();
+        Optional<Car> carToUpdate = carRepository.findById(Id);
 
         if (carToUpdate.isEmpty()) {
-            throw new CarNotFoundException("Car not found with this rendszam=" + rendszam);
+            throw new CarNotFoundException("Car not found with this Id=" + Id);
         }
 
         Car carToPersist = modelMapper.map(carDTO, Car.class);
@@ -64,13 +64,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void delete(String rendszam) {
-        Optional<Car> carToDelete = carRepository.findById(rendszam);
+    public void delete(Long Id) {
+        Optional<Car> carToDelete = carRepository.findById(Id);
 
         if (carToDelete.isPresent()) {
             carRepository.delete(carToDelete.get());
         } else {
-            throw new CarNotFoundException("Car not found with this rendszam=" + rendszam);
+            throw new CarNotFoundException("Car not found with this Id=" + Id);
         }
     }
 
