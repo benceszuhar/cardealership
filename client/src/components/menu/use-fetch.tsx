@@ -1,12 +1,8 @@
-
-import * as React from "react";
- 
-
 const kerdez  = (() => {
 
     return {
         question: async () => {
-            const res = await fetch("https://www.boredapi.com/api/activity");
+            const res = await fetch('http://localhost:8080/cars');
             console.log(res);
             return res.json();
 

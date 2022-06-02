@@ -1,18 +1,20 @@
-import * as React from "react"
+
 import { useState } from "react"  
 
+import kattint from "./use-fetch";
+
 function Menu(){
+
     const [isActive, setIsActive] = useState(false);
     return (
         <div className="menu">
             <div className="menu-btn" onClick={(e)=>
             setIsActive(!isActive)}>
                 Menü
-                <span className="fas fa-caret-down"></span>
             </div>
             {isActive && (
             <div className="menu-content">
-                <div className="menu-item">
+                <div className="menu-item" onClick={kattint}>
                     Eladó autók listája
                 </div>
                 <div className="menu-item">
@@ -24,6 +26,7 @@ function Menu(){
             </div>
             )}
         </div>
+        
     )
 }
 
