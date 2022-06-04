@@ -1,154 +1,189 @@
-import React, { useState, ChangeEvent } from "react";
+import { useFormik } from "formik";
 import {
-  Flex,
   Box,
+  Button,
+  Checkbox,
+  Flex,
   FormControl,
   FormLabel,
-  Input,
-  Checkbox,
-  Stack,
-  Link,
-  Button,
   Heading,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+  Input,
+  Stack,
+  VStack
+} from "@chakra-ui/react";
 
-import CarData from '../types/Car';
-import CarService from "../Service/CarService";
+export default function AddCar() {
+  const formik = useFormik({
+    initialValues: {
 
-const AddCar = () => {
-  const initialCarState = {
-    rendszam: "",
-    marka: "",
-    tipus: "",
-    evjarat: 0,
-    motorterfogat: 0,
-    uzemanyagfajta: "",
-    km_allas: 0,
-    szin: "",
-    ar: 0
-  };
-  const [car, setCar] = useState<CarData>(initialCarState);
-  const [submitted, setSubmitted] = useState<boolean>(false);
+        rendszam: "",
+        marka: "",
+        tipus: "",
+        evjarat: 0,
+        motorterfogat: 0,
+        uzemanyagfajta: "",
+        km_allas: 0,
+        szin: "",
+        ar: 0
+       
+    },
+  
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setCar({ ...car, [name]: value });
-  };
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));      
+      
+      const data = { values };
 
-  const saveCar = () => {
-    var data = {
-        rendszam: car.rendszam,
-        marka: car.marka,
-        tipus: car.tipus,
-        evjarat: car.evjarat,
-        motorterfogat: car.motorterfogat,
-        uzemanyagfajta: car.uzemanyagfajta,
-        km_allas: car.km_allas,
-        szin: car.szin,
-        ar: car.ar
-    };
-
-    CarService.create(data)
-      .then((response: any) => {
-        setCar({
-            rendszam: response.data.rendszam,
-            marka: response.data.marka,
-            tipus: response.data.tipus,
-            evjarat: response.data.evjarat,
-            motorterfogat: response.data.motorterfogat,
-            uzemanyagfajta: response.data.uzemanyagfajta,
-            km_allas: response.data.km_allas,
-            szin: response.data.szin,
-            ar: response.data.ar
-        });
-        setSubmitted(true);
-        console.log(response.data);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
-  };
-
-  const newCar = () => {
-    setCar(initialCarState);
-    setSubmitted(false);
-  };
-
+        fetch(`http://localhost:8080/users`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+              }
+    });
   return (
-        <Flex
-          minH={'100vh'}
-          align={'center'}
-          justify={'center'}
-          bg={useColorModeValue('gray.50', 'gray.800')}>
-          <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-            <Stack align={'center'}>
-              <Heading fontSize={'3xl'}>Adja meg az autó paramétereit</Heading>
-            </Stack>
-            <Box
-              rounded={'lg'}
-              bg={useColorModeValue('white', 'gray.700')}
-              boxShadow={'lg'}
-              p={8}>
-              <Stack spacing={4}>
-                <FormControl id="rendszam">
-                  <FormLabel>Rendszám</FormLabel>
-                  <Input type="email" />
-                </FormControl>
-
-                <FormControl id="marka">
-                  <FormLabel>Márka</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="tipus">
-                  <FormLabel>Típus</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="evjarat">
-                  <FormLabel>Évjárat</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="motorterfogat">
-                  <FormLabel>Motortérfogat</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="uzemanyagfajta">
-                  <FormLabel>Üzemanyagfajta</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="km_allas">
-                  <FormLabel>KM óra állása</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="szin">
-                  <FormLabel>Szín</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-
-                <FormControl id="ar">
-                  <FormLabel>Ár</FormLabel>
-                  <Input type="password" />
-                </FormControl>
-                  <Button
-                    bg={'teal.400'}
-                    color={'white'}
-                    _hover={{
-                      bg: 'blue.500',
-                    }}>
-                    Autó hozzáadása
-                  </Button>
-              </Stack>
-            </Box>
+    <Flex  bg="gray.100" align="center" justify="center" h="100vh">
+        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+          <Stack align={'center'}>
+              <Heading fontSize={'3xl'}>Új autó paraméterei</Heading>
           </Stack>
-        </Flex>
-      );
-    }
+          
+          <Box boxShadow='dark-lg' bg="white" p={6} rounded="md">
+            <form onSubmit={formik.handleSubmit}>
+              <VStack spacing={4} align="flex-start">
+                <FormControl>
+                  <FormLabel htmlFor="rendszam">Rendszám</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="rendszam"
+                    name="rendszam"
+                    type="string"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.rendszam}
+                  />
+                </FormControl>
 
-export default AddCar;
+                <FormControl>
+                  <FormLabel htmlFor="marka">Márka</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="marka"
+                    name="marka"
+                    type="string"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.marka}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="tipus">Típus</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="tipus"
+                    name="tipus"
+                    type="string"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.tipus}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="evjarat">Évjárat</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="evjarat"
+                    name="evjarat"
+                    type="number"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.evjarat}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="motorterfogat">Motortérfogat</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="motorterfogat"
+                    name="motorterfogat"
+                    type="number"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.motorterfogat}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="uzemanyagfajta">Üzemanyag</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="uzemanyagfajta"
+                    name="uzemanyagfajta"
+                    type="string"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.uzemanyagfajta}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="km_allas">Futásteljesítmény</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="km_allas"
+                    name="km_allas"
+                    type="number"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.km_allas}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="szin">Szín</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="szin"
+                    name="szin"
+                    type="string"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.szin}
+                  />
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel htmlFor="ar">Ár</FormLabel>
+                  <Input
+                    bgColor = "#CBD5E0"
+                    id="ar"
+                    name="ar"
+                    type="number"
+                    variant="filled"
+                    onChange={formik.handleChange}
+                    value={formik.values.ar}
+                  />
+                </FormControl>
+                
+                <Button type="submit" colorScheme="blue" width="full">
+                  Rögzítés
+                </Button>
+              </VStack>
+            </form>
+          </Box>
+      </Stack>
+    </Flex>
+  );
+}

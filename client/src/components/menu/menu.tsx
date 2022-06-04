@@ -22,8 +22,8 @@ import {
               align={{ base: 'center', md: 'center' }}>
               <Stack direction={'row'} spacing={6}>
                 <Link href={'/show'}>Eladó autók listája</Link>
-                <Link href={'/add'}>Autó hozzáadása az adatbázishoz</Link>
-                <Link href={'/delete'}>Eladott autók törlése</Link>
+                <Link href={'/add'}>Új autó rögzítése</Link>
+                <Link href={'/delete'}>Eladott autó törlése</Link>
               </Stack>
               <Link href={'/'}>
               <Text>Best Car Dealership in Town</Text>
