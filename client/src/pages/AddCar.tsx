@@ -84,7 +84,7 @@ const AddCar = () => {
           bg={useColorModeValue('gray.50', 'gray.800')}>
           <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
             <Stack align={'center'}>
-              <Heading fontSize={'4xl'}>Kérem adja meg az új autóhoz tartozó adatokat</Heading>
+              <Heading fontSize={'3xl'}>Adja meg az autó paramétereit</Heading>
             </Stack>
             <Box
               rounded={'lg'}
@@ -103,7 +103,7 @@ const AddCar = () => {
                 </FormControl>
 
                 <FormControl id="tipus">
-                  <FormLabel>Tipus</FormLabel>
+                  <FormLabel>Típus</FormLabel>
                   <Input type="password" />
                 </FormControl>
 
@@ -128,7 +128,7 @@ const AddCar = () => {
                 </FormControl>
 
                 <FormControl id="szin">
-                  <FormLabel>Szin</FormLabel>
+                  <FormLabel>Szín</FormLabel>
                   <Input type="password" />
                 </FormControl>
 
@@ -137,7 +137,7 @@ const AddCar = () => {
                   <Input type="password" />
                 </FormControl>
                   <Button
-                    bg={'blue.400'}
+                    bg={'teal.400'}
                     color={'white'}
                     _hover={{
                       bg: 'blue.500',

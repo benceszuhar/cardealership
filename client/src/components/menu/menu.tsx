@@ -4,11 +4,14 @@ import {
         Stack,
         Text,
         Link,
+        useColorModeValue
       } from '@chakra-ui/react';
       
     function Menu() {
         return (
-          <Box>
+          <Box
+            bg={useColorModeValue('gray.800', 'gray.900')}
+            color={useColorModeValue('teal.300', 'teal.400')}>
             <Container
               as={Stack}
               maxW={'6xl'}
@@ -20,7 +23,7 @@ import {
               <Stack direction={'row'} spacing={6}>
                 <Link href={'/show'}>Eladó autók listája</Link>
                 <Link href={'/add'}>Autó hozzáadása az adatbázishoz</Link>
-                <Link href={'#'}>Eladott autók törlése</Link>
+                <Link href={'/delete'}>Eladott autók törlése</Link>
               </Stack>
               <Link href={'/'}>
               <Text>Best Car Dealership in Town</Text>
