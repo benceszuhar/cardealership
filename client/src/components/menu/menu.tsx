@@ -22,7 +22,9 @@ import {
                 <Link href={'/add'}>Autó hozzáadása az adatbázishoz</Link>
                 <Link href={'#'}>Eladott autók törlése</Link>
               </Stack>
+              <Link href={'/'}>
               <Text>Best Car Dealership in Town</Text>
+              </Link>
             </Container>
           </Box>
         );

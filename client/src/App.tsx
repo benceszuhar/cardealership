@@ -6,75 +6,15 @@ import  Menu  from "./components/menu/menu"
 import "./components/menu/menu.css"
 import { Route, Routes } from "react-router-dom";
 import AddCar from "./pages/AddCar";
+import Car from "./pages/Car";
 
 const App = () => {
-const [state, setState] = React.useState({ data: [], loading: true });
-
-const columns: Column[] = React.useMemo(
-  () => [
-  {
-    Header: "Rendszám",
-    accessor: "rendszam"
-  },
-  {
-    Header: "Márka",
-    accessor: "marka"
-  },
-  {
-    Header: "Típus",
-    accessor: "tipus",
-  },
-  {
-    Header: "Évjárat",
-    accessor: "evjarat"
-  },
-  {
-    Header: "Motortérfogat",
-    accessor: "motorterfogat"
-  },
-  {
-    Header: "Üzemanyagfajta",
-    accessor: "uzemanyagfajta",
-  },
-  {
-    Header: "Km óra állása",
-    accessor: "km_allas",
-  },
-  {
-    Header: "Szín",
-    accessor: "szin",
-  },
-  {
-    Header: "Ár",
-    accessor: "ar",
-  },
-  ],
-  [],
-);
-React.useEffect(() => {
-  function fetchData() {
-    setState((state) => ({
-      ...state,
-      loading: true,
-    }));
-    fetch(
-      `http://localhost:8080/cars`,
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setState({ data, loading: false });
-      });
-  }
-  fetchData();
-},
-);
-
 
   return(
   <ChakraProvider theme={theme}> 
   <Menu/> 
-  <DataTable columns={columns} data={state.data} />
   <Routes>
+    <Route path="/show" element={<Car/>} />
     <Route path="/add" element={<AddCar/>} />
   </Routes> 
   </ChakraProvider>

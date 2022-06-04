@@ -1,4 +1,19 @@
 import React, { useState, ChangeEvent } from "react";
+import {
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Checkbox,
+  Stack,
+  Link,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
+
 import CarData from '../types/Car';
 import CarService from "../Service/CarService";
 
@@ -62,140 +77,78 @@ const AddCar = () => {
   };
 
   return (
-    <div className="submit-form">
-      {submitted ? (
-        <div>
-          <h4>Sikeresen hozzáadtad az autót az adatbázishoz!</h4>
-          <button className="btn btn-success" onClick={newCar}>
-            Hozzáad
-          </button>
-        </div>
-      ) : (
-        <div>
-          <div className="form-group">
-            <label htmlFor="Rendszám"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.rendszam}
-              onChange={handleInputChange}
-              name="rendszam"
-            />
-          </div>
+        <Flex
+          minH={'100vh'}
+          align={'center'}
+          justify={'center'}
+          bg={useColorModeValue('gray.50', 'gray.800')}>
+          <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+            <Stack align={'center'}>
+              <Heading fontSize={'4xl'}>Kérem adja meg az új autóhoz tartozó adatokat</Heading>
+            </Stack>
+            <Box
+              rounded={'lg'}
+              bg={useColorModeValue('white', 'gray.700')}
+              boxShadow={'lg'}
+              p={8}>
+              <Stack spacing={4}>
+                <FormControl id="rendszam">
+                  <FormLabel>Rendszám</FormLabel>
+                  <Input type="email" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Márka"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.marka}
-              onChange={handleInputChange}
-              name="marka"
-            />
-          </div>
+                <FormControl id="marka">
+                  <FormLabel>Márka</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Típus"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.tipus}
-              onChange={handleInputChange}
-              name="tipus"
-            />
-          </div>
+                <FormControl id="tipus">
+                  <FormLabel>Tipus</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Évjárat"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.evjarat}
-              onChange={handleInputChange}
-              name="evjarat"
-            />
-          </div>
+                <FormControl id="evjarat">
+                  <FormLabel>Évjárat</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Motortérfogat"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.motorterfogat}
-              onChange={handleInputChange}
-              name="motorterfogat"
-            />
-          </div>
+                <FormControl id="motorterfogat">
+                  <FormLabel>Motortérfogat</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Üzemanyagfajta"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.uzemanyagfajta}
-              onChange={handleInputChange}
-              name="uzemanyagfajta"
-            />
-          </div>
+                <FormControl id="uzemanyagfajta">
+                  <FormLabel>Üzemanyagfajta</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Km óra állása"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.km_allas}
-              onChange={handleInputChange}
-              name="km_allas"
-            />
-          </div>
+                <FormControl id="km_allas">
+                  <FormLabel>KM óra állása</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Szín"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.szin}
-              onChange={handleInputChange}
-              name="szin"
-            />
-          </div>
+                <FormControl id="szin">
+                  <FormLabel>Szin</FormLabel>
+                  <Input type="password" />
+                </FormControl>
 
-          <div className="form-group">
-            <label htmlFor="Ár"></label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={car.ar}
-              onChange={handleInputChange}
-              name="ar"
-            />
-          </div>
-
-          <button onClick={saveCar} className="btn btn-success">
-            Hozzáadva
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
+                <FormControl id="ar">
+                  <FormLabel>Ár</FormLabel>
+                  <Input type="password" />
+                </FormControl>
+                  <Button
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500',
+                    }}>
+                    Autó hozzáadása
+                  </Button>
+              </Stack>
+            </Box>
+          </Stack>
+        </Flex>
+      );
+    }
 
 export default AddCar;

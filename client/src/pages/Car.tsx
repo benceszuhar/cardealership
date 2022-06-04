@@ -1,7 +1,8 @@
 import React from "react";
 import { Column } from "react-table";
+import { DataTable } from "../components/DataTable";
 
- export const CarForSale = () => {
+const Car = () => {
 
   const [state, setState] = React.useState({ data: [], loading: true });
     
@@ -63,5 +64,11 @@ import { Column } from "react-table";
       fetchData();
     },
     );
+    return (
+
+    <DataTable columns={columns} data={state.data} />
+    
+    )
 }
+export default Car;
 
