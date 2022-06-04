@@ -4,6 +4,8 @@ import { DataTable } from "./components/DataTable";
 import { Column } from "react-table";
 import  Menu  from "./components/menu/menu"
 import "./components/menu/menu.css"
+import { Route, Routes } from "react-router-dom";
+import AddCar from "./pages/AddCar";
 
 const App = () => {
 const [state, setState] = React.useState({ data: [], loading: true });
@@ -70,8 +72,11 @@ React.useEffect(() => {
 
   return(
   <ChakraProvider theme={theme}> 
-  <Menu/>   
+  <Menu/> 
   <DataTable columns={columns} data={state.data} />
+  <Routes>
+    <Route path="/add" element={<AddCar/>} />
+  </Routes> 
   </ChakraProvider>
   );
 };

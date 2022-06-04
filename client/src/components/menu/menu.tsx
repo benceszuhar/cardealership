@@ -1,33 +1,31 @@
-
-import { useState } from "react"  
-
-import kattint from "./use-fetch";
-
-function Menu(){
-
-    const [isActive, setIsActive] = useState(false);
-    return (
-        <div className="menu">
-            <div className="menu-btn" onClick={(e)=>
-            setIsActive(!isActive)}>
-                Menü
-            </div>
-            {isActive && (
-            <div className="menu-content">
-                <div className="menu-item" onClick={kattint}>
-                    Eladó autók listája
-                </div>
-                <div className="menu-item">
-                    Új autó rögzítése
-                </div>  
-                <div className="menu-item">
-                    Eladott autó törlése
-                </div>              
-            </div>
-            )}
-        </div>
-        
-    )
-}
+import {
+        Box,
+        Container,
+        Stack,
+        Text,
+        Link,
+      } from '@chakra-ui/react';
+      
+    function Menu() {
+        return (
+          <Box>
+            <Container
+              as={Stack}
+              maxW={'6xl'}
+              py={4}
+              direction={{ base: 'column', md: 'row' }}
+              spacing={4}
+              justify={{ base: 'center', md: 'space-between' }}
+              align={{ base: 'center', md: 'center' }}>
+              <Stack direction={'row'} spacing={6}>
+                <Link href={'/show'}>Eladó autók listája</Link>
+                <Link href={'/add'}>Autó hozzáadása az adatbázishoz</Link>
+                <Link href={'#'}>Eladott autók törlése</Link>
+              </Stack>
+              <Text>Best Car Dealership in Town</Text>
+            </Container>
+          </Box>
+        );
+      }
 
 export default Menu;
