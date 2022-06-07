@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import AddCar from "./pages/AddCar";
 import Car from "./pages/Car";
 import DeleteCar from "./pages/DeleteCar";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
 
@@ -18,10 +19,11 @@ const App = () => {
     <ChakraProvider theme={theme}>
         <Menu />
         <Routes>
+        <Route   path="/" element={<LandingPage/>} />
           <Route path="/show" element={<Car/>} />
           <Route path="/add" element={<AddCar/>} />
           <Route path="/delete" element={<DeleteCar/>} />
-          <Route path='/show' element={<AddCar/>} />
+          <Route path="/show" element={<AddCar/>} />
         </Routes>
       </ChakraProvider>
     

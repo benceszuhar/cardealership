@@ -57,19 +57,18 @@ export default function AddCar() {
               }
     });
   return (
-    <Flex  bg="gray.100" align="top" justify="center" h="100vh">
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+    <Flex  bg="gray.20" align="top" justify="center" h="100vh">
+        <Stack spacing={3} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
               <Heading fontSize={'3xl'}>Új autó paraméterei</Heading>
           </Stack>
-          
           <Box boxShadow='dark-lg' bg="white" p={6} rounded="md">
             <form onSubmit={formik.handleSubmit}>
-              <VStack spacing={4} align="flex-start">
+              <VStack spacing={0.5} align="flex-start">
                 <FormControl>
                   <FormLabel htmlFor="rendszam">Rendszám</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="rendszam"
                     name="rendszam"
                     type="string"
@@ -82,7 +81,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="marka">Márka</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="marka"
                     name="marka"
                     type="string"
@@ -95,7 +94,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="tipus">Típus</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="tipus"
                     name="tipus"
                     type="string"
@@ -108,7 +107,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="evjarat">Évjárat</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="evjarat"
                     name="evjarat"
                     type="number"
@@ -121,7 +120,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="motorterfogat">Motortérfogat</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="motorterfogat"
                     name="motorterfogat"
                     type="number"
@@ -134,7 +133,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="uzemanyagFajta">Üzemanyag</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="uzemanyagFajta"
                     name="uzemanyagFajta"
                     type="string"
@@ -147,7 +146,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="kmAllas">Futásteljesítmény</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="kmAllas"
                     name="kmAllas"
                     type="number"
@@ -160,7 +159,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="szin">Szín</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="szin"
                     name="szin"
                     type="string"
@@ -173,7 +172,7 @@ export default function AddCar() {
                 <FormControl>
                   <FormLabel htmlFor="ar">Ár</FormLabel>
                   <Input
-                    bgColor = "#CBD5E0"
+                    bgColor = "gray.50"
                     id="ar"
                     name="ar"
                     type="number"
@@ -183,7 +182,12 @@ export default function AddCar() {
                   />
                 </FormControl>
                 <Link href={'/show'}>
-                <Button type="submit" colorScheme="blue" width="full">
+                <Button 
+                type="submit"  
+                width="full"
+                bg={'teal.400'}
+                color={'white'}
+                _hover={{bg: 'teal.600'}}>
                   Rögzítés
                 </Button>
                 </Link>

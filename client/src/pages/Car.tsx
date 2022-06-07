@@ -27,7 +27,7 @@ const Car = () => {
       },
       {
         Header: "Évjárat",
-        accessor: "evjarat"
+        accessor: "evjarat",
       },
       {
         Header: "Motortérfogat",

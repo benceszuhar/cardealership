@@ -6,7 +6,8 @@ import {
   Tr,
   Th,
   Td,
-  chakra
+  chakra,
+  Box
 } from "@chakra-ui/react";
 import {
   TriangleDownIcon,
@@ -33,7 +34,9 @@ export function DataTable<Data extends object>({
 
   return (
     <Table {...getTableProps()}>
-      <Thead>
+      <Thead 
+     p={4}
+     bg="gray.100">
         {headerGroups.map((headerGroup) => (
           <Tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
@@ -41,7 +44,6 @@ export function DataTable<Data extends object>({
                 {...column.getHeaderProps(
                   column.getSortByToggleProps()
                 )}
-                isNumeric={column.isNumeric}
               >
                 {column.render("Header")}
                 <chakra.span pl="4">
@@ -58,7 +60,7 @@ export function DataTable<Data extends object>({
           </Tr>
         ))}
       </Thead>
-      <Tbody {...getTableBodyProps()}>
+      <Tbody {...getTableBodyProps()} >
         {rows.map((row) => {
           prepareRow(row);
           return (

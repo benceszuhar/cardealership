@@ -47,19 +47,19 @@ export default function DeleteCar() {
                   }
         });
       return (
-        <Flex  bg="gray.100" align="center" justify="center" h="100vh">
+        <Flex  bg="gray.20" align="center" justify="center" h="100vh">
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                 <Stack align={'center'}>
-                <Heading fontSize={'3xl'}>Törlendő autó</Heading>
+                <Heading fontSize={'3xl'}>Autó törlése az adatbázisból</Heading>
                 </Stack>
                 <Box boxShadow='dark-lg' bg="white" p={6} rounded="md">
                     <form onSubmit={formik.handleSubmit}>
                     <VStack spacing={4} align="flex-start">
 
                         <FormControl>
-                        <FormLabel htmlFor="id">Id</FormLabel>
+                        <FormLabel htmlFor="id">Kérem adja meg az autó azonosítóját</FormLabel>
                         <Input
-                            bgColor = "#CBD5E0"
+                            bgColor = "gray.50"
                             id="id"
                             name="id"
                             type="number"
@@ -67,11 +67,13 @@ export default function DeleteCar() {
                             onChange={formik.handleChange}
                             value={formik.values.id}
                         />
-                        </FormControl>
-            
-                        
-                        
-                        <Button type="submit" colorScheme="blue" width="full" _hover={{bg: 'red'}}>
+                        </FormControl>                      
+                        <Button 
+                        type="submit" 
+                        bg={'teal.400'}
+                        color={'white'}
+                        width="full" 
+                        _hover={{bg: 'red'}}>
                         Törlés
                         </Button>
                     </VStack>
