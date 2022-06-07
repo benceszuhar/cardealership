@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import { Tr } from "@chakra-ui/table";
 import React from "react";
 import { Column } from "react-table";
@@ -35,11 +36,11 @@ const Car = () => {
       },
       {
         Header: "Üzemanyagfajta",
-        accessor: "uzemanyagFajta"
+        accessor: "uzemanyagfajta"
       },
       {
         Header: "Km óra állása",
-        accessor: "kmAllas"
+        accessor: "km_allas"
       },
       {
         Header: "Szín",
@@ -49,6 +50,15 @@ const Car = () => {
         Header: "Ár",
         accessor: "ar"
       },
+      {
+        Header:"Módosítás",
+        accessor:"edit",
+      },
+      {
+        Header:"Törlés",
+        accessor:"delete",
+      },
+      
       ],
       [],
     );
@@ -59,7 +69,7 @@ const Car = () => {
           loading: true,
         }));
         fetch(
-          `http://localhost:8080/cars`,
+          `/cars`,
         )
           .then((res) => res.json())
           .then((data) => {
@@ -68,10 +78,20 @@ const Car = () => {
       }
       fetchData();
     },
+    []
     );
+    const handleRemove = async (Id: number) => {
+      console.log('delete', Id);
+    };
+    const handleEdit = (Id: number) => {
+      console.log('edit', Id);
+    };
     return (
 
-    <DataTable  columns={columns} data={state.data}  />
+    <DataTable  
+    columns={columns} 
+    data={state.data}
+    />
     
     )
 }

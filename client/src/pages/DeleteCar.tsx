@@ -20,7 +20,7 @@ export default function DeleteCar() {
     const formik = useFormik({
         initialValues: {
     
-            id: 0,
+            Id: 0,
             
         },
       
@@ -30,7 +30,7 @@ export default function DeleteCar() {
           navigate('/show');
           const data = { values };
     
-            fetch(`http://localhost:8080/${formik.values.id}`, {
+            fetch(`/cars/${formik.values.Id}`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
@@ -57,15 +57,15 @@ export default function DeleteCar() {
                     <VStack spacing={4} align="flex-start">
 
                         <FormControl>
-                        <FormLabel htmlFor="id">Kérem adja meg az autó azonosítóját</FormLabel>
+                        <FormLabel htmlFor="Id">Kérem adja meg az autó azonosítóját</FormLabel>
                         <Input
                             bgColor = "gray.50"
-                            id="id"
-                            name="id"
+                            id="Id"
+                            name="Id"
                             type="number"
                             variant="filled"
                             onChange={formik.handleChange}
-                            value={formik.values.id}
+                            value={formik.values.Id}
                         />
                         </FormControl>                      
                         <Button 
