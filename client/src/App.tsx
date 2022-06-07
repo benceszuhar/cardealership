@@ -9,27 +9,22 @@ import AddCar from "./pages/AddCar";
 import Car from "./pages/Car";
 import DeleteCar from "./pages/DeleteCar";
 
-
 const App = () => {
 
   
 
-  return(
-
-    <><div className="App" style={{
-      backgroundImage: "url(/hatter.png)"}}>      
-   
-
+  return(    
+  
     <ChakraProvider theme={theme}>
         <Menu />
         <Routes>
-          <Route path="/show" element={<Car />} />
-          <Route path="/add" element={<AddCar />} />
-          <Route path="/delete" element={<DeleteCar />} />
+          <Route path="/show" element={<Car/>} />
+          <Route path="/add" element={<AddCar/>} />
+          <Route path="/delete" element={<DeleteCar/>} />
+          <Route path='/show' element={<AddCar/>} />
         </Routes>
       </ChakraProvider>
-      
-      </div></>
+    
   );
 };
 

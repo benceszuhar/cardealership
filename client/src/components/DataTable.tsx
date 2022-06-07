@@ -8,16 +8,14 @@ import {
   Td,
   chakra
 } from "@chakra-ui/react";
-
 import {
   TriangleDownIcon,
   TriangleUpIcon
 } from "@chakra-ui/icons";
-
 import { useTable, useSortBy, Column } from "react-table";
 
 export type DataTableProps<Data extends object> = {
-  data: any;
+  data: Data[];
   columns: Column<Data>[];
 };
 

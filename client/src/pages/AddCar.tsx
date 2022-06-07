@@ -8,21 +8,26 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
   Stack,
   VStack
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddCar() {
+  
+  const navigate=useNavigate();
   const formik = useFormik({
     initialValues: {
 
+        id:"",
         rendszam: "",
         marka: "",
         tipus: "",
         evjarat: 0,
         motorterfogat: 0,
-        uzemanyagfajta: "",
-        km_allas: 0,
+        uzemanyagFajta: "",
+        kmAllas: 0,
         szin: "",
         ar: 0
        
@@ -30,20 +35,21 @@ export default function AddCar() {
   
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));      
-      
+          
+      navigate('/show');
       const data = { values };
 
-        fetch(`http://localhost:8080/users`, {
+        fetch(`http://localhost:8080/cars`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(values),
           })
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
+           // alert(JSON.stringify(data, null, 2));  
           })
           .catch((error) => {
             console.error('Error:', error);
@@ -51,7 +57,7 @@ export default function AddCar() {
               }
     });
   return (
-    <Flex  bg="gray.100" align="center" justify="center" h="100vh">
+    <Flex  bg="gray.100" align="top" justify="center" h="100vh">
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
               <Heading fontSize={'3xl'}>Új autó paraméterei</Heading>
@@ -126,28 +132,28 @@ export default function AddCar() {
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel htmlFor="uzemanyagfajta">Üzemanyag</FormLabel>
+                  <FormLabel htmlFor="uzemanyagFajta">Üzemanyag</FormLabel>
                   <Input
                     bgColor = "#CBD5E0"
-                    id="uzemanyagfajta"
-                    name="uzemanyagfajta"
+                    id="uzemanyagFajta"
+                    name="uzemanyagFajta"
                     type="string"
                     variant="filled"
                     onChange={formik.handleChange}
-                    value={formik.values.uzemanyagfajta}
+                    value={formik.values.uzemanyagFajta}
                   />
                 </FormControl>
 
                 <FormControl>
-                  <FormLabel htmlFor="km_allas">Futásteljesítmény</FormLabel>
+                  <FormLabel htmlFor="kmAllas">Futásteljesítmény</FormLabel>
                   <Input
                     bgColor = "#CBD5E0"
-                    id="km_allas"
-                    name="km_allas"
+                    id="kmAllas"
+                    name="kmAllas"
                     type="number"
                     variant="filled"
                     onChange={formik.handleChange}
-                    value={formik.values.km_allas}
+                    value={formik.values.kmAllas}
                   />
                 </FormControl>
 
@@ -176,10 +182,11 @@ export default function AddCar() {
                     value={formik.values.ar}
                   />
                 </FormControl>
-                
+                <Link href={'/show'}>
                 <Button type="submit" colorScheme="blue" width="full">
                   Rögzítés
                 </Button>
+                </Link>
               </VStack>
             </form>
           </Box>

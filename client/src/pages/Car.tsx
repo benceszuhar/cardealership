@@ -1,3 +1,4 @@
+import { Tr } from "@chakra-ui/table";
 import React from "react";
 import { Column } from "react-table";
 import { DataTable } from "../components/DataTable";
@@ -8,6 +9,10 @@ const Car = () => {
     
   const columns: Column[] = React.useMemo(
       () => [
+        {
+          Header: "Id",
+          accessor: "id"
+        },
       {
         Header: "Rendszám",
         accessor: "rendszam"
@@ -18,7 +23,7 @@ const Car = () => {
       },
       {
         Header: "Típus",
-        accessor: "tipus",
+        accessor: "tipus"
       },
       {
         Header: "Évjárat",
@@ -30,19 +35,19 @@ const Car = () => {
       },
       {
         Header: "Üzemanyagfajta",
-        accessor: "uzemanyagfajta",
+        accessor: "uzemanyagFajta"
       },
       {
         Header: "Km óra állása",
-        accessor: "km_allas",
+        accessor: "kmAllas"
       },
       {
         Header: "Szín",
-        accessor: "szin",
+        accessor: "szin"
       },
       {
         Header: "Ár",
-        accessor: "ar",
+        accessor: "ar"
       },
       ],
       [],
@@ -66,7 +71,7 @@ const Car = () => {
     );
     return (
 
-    <DataTable columns={columns} data={state.data} />
+    <DataTable  columns={columns} data={state.data}  />
     
     )
 }

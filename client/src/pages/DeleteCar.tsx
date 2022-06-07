@@ -11,32 +11,35 @@ import {
   Stack,
   VStack
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function DeleteCar() {
     
+    const navigate=useNavigate();
     const formik = useFormik({
         initialValues: {
     
-            rendszam: "",
+            id: 0,
             
         },
       
     
         onSubmit: (values) => {
-          alert(JSON.stringify(values, null, 2));      
-          
+          //alert(JSON.stringify(values, null, 2));  
+          navigate('/show');
           const data = { values };
     
-            fetch(`http://localhost:8080/users`, {
+            fetch(`http://localhost:8080/${formik.values.id}`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(values),
               })
               .then(response => response.json())
               .then(data => {
-                console.log('Success:', data);
+                console.log('Success:', data);  
               })
               .catch((error) => {
                 console.error('Error:', error);
@@ -54,21 +57,21 @@ export default function DeleteCar() {
                     <VStack spacing={4} align="flex-start">
 
                         <FormControl>
-                        <FormLabel htmlFor="rendszam">Rendszám</FormLabel>
+                        <FormLabel htmlFor="id">Id</FormLabel>
                         <Input
                             bgColor = "#CBD5E0"
-                            id="rendszam"
-                            name="rendszam"
-                            type="string"
+                            id="id"
+                            name="id"
+                            type="number"
                             variant="filled"
                             onChange={formik.handleChange}
-                            value={formik.values.rendszam}
+                            value={formik.values.id}
                         />
                         </FormControl>
             
                         
                         
-                        <Button type="submit" colorScheme="blue" width="full">
+                        <Button type="submit" colorScheme="blue" width="full" _hover={{bg: 'red'}}>
                         Törlés
                         </Button>
                     </VStack>
@@ -77,4 +80,5 @@ export default function DeleteCar() {
           </Stack>
         </Flex>
       );
-    }
+}
+
