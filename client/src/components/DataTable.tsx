@@ -14,12 +14,13 @@ import {
   TriangleUpIcon
 } from "@chakra-ui/icons";
 import { useTable, useSortBy, Column } from "react-table";
+import { handleDelete } from "../service/handleDelete";
+
 
 export type DataTableProps<Data extends object> = {
   data: Data[];
   columns: Column<Data>[];
 };
-
 export function DataTable<Data extends object>({
   data,
   columns
@@ -31,7 +32,9 @@ export function DataTable<Data extends object>({
     rows,
     prepareRow
   } = useTable({ columns, data }, useSortBy);
+  const [state, setState] = React.useState({ data: [] });
 
+  
   return (
     <Table {...getTableProps()}>
       <Thead 
@@ -67,6 +70,11 @@ export function DataTable<Data extends object>({
             <Tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
                 <Td
+                onClick={() => 
+                  handleDelete(row.values.id)
+                  }
+              
+                {...cell.getCellProps()}
                   {...cell.getCellProps()}
                   isNumeric={cell.column.isNumeric}
                 >

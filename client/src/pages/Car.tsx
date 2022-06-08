@@ -1,19 +1,20 @@
-import { Button } from "@chakra-ui/react";
-import { Tr } from "@chakra-ui/table";
+import { useFormik } from "formik";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Column } from "react-table";
 import { DataTable } from "../components/DataTable";
+import AddCar from "./AddCar";
 
 const Car = () => {
 
-  const [state, setState] = React.useState({ data: [], loading: true });
-    
+  const [state, setState] = React.useState({ data: [] });
+  let deleteid = 0;
   const columns: Column[] = React.useMemo(
       () => [
-        {
-          Header: "Id",
-          accessor: "id"
-        },
+      {
+        Header: "Id",
+        accessor: "id"
+      },
       {
         Header: "Rendszám",
         accessor: "rendszam"
@@ -56,7 +57,16 @@ const Car = () => {
       },
       {
         Header:"Törlés",
-        accessor:"delete",
+        id:'delete',
+        accessor: str => "delete",
+
+        Cell: (row)=> (
+          <span style={{cursor:'pointer',color:'red'} }>
+            <Link to="/show">
+                    Delete
+                    </Link>
+                  </span> 
+          ) 
       },
       
       ],
@@ -73,19 +83,14 @@ const Car = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            setState({ data, loading: false });
+            setState({ data});
+            deleteid=data.id;
           });
       }
       fetchData();
     },
     []
     );
-    const handleRemove = async (Id: number) => {
-      console.log('delete', Id);
-    };
-    const handleEdit = (Id: number) => {
-      console.log('edit', Id);
-    };
     return (
 
     <DataTable  

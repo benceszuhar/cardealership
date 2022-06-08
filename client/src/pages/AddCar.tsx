@@ -5,6 +5,7 @@ import {
   Checkbox,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -13,51 +14,34 @@ import {
   VStack
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import * as Yup from 'yup';
+import carFormValidationSchema from "../components/Validation/validation";
 
 export default function AddCar() {
-  
-
-  function validationSchema() {
-    const validationSchema = Yup.object().shape({
-      rendszam: Yup.string().required("Fullname is required"),
-      marka: Yup.string()
-        .required("Username is required")
-        .min(6, "Username must be at least 6 characters")
-        .max(20, "Username must not exceed 20 characters"),
-      tipus: Yup.string().required("Email is required").email("Email is invalid"),
-      evjarat: Yup.string()
-        .required("Password is required")
-        .min(6, "Password must be at least 6 characters")
-        .max(40, "Password must not exceed 40 characters"),
-    }
-    )};
-
-
 
   const navigate=useNavigate();
-  const formik = useFormik({
+  const { errors, values, handleSubmit, handleChange} = useFormik({
     initialValues: {
 
         id:"",
         rendszam: "",
         marka: "",
         tipus: "",
-        evjarat: 0,
-        motorterfogat: 0,
+        evjarat: "",
+        motorterfogat: "",
         uzemanyagfajta: "",
-        km_allas: 0,
+        km_allas: "",
         szin: "",
-        ar: 0
+        ar: ""
        
     },
-    validationSchema,
-    // validateOnChange: false,
-    // validateOnBlur: false,
+
+    validationSchema : carFormValidationSchema,
+  
     onSubmit: (values) => {
+      
       console.log(JSON.stringify(values, null, 2));
           
-      navigate('/show');
+      //navigate('/show');
       const data = { values };
 
         fetch(`/cars`, {
@@ -84,9 +68,9 @@ export default function AddCar() {
               <Heading fontSize={'3xl'}>Új autó paraméterei</Heading>
           </Stack>
           <Box boxShadow='dark-lg' bg="white" p={6} rounded="md">
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <VStack spacing={0.5} align="flex-start">
-                <FormControl>
+                <FormControl isInvalid={!!errors.rendszam}>
                   <FormLabel htmlFor="rendszam">Rendszám</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -95,12 +79,13 @@ export default function AddCar() {
                     type="string"
                     variant="filled"
                     className="form-control"
-                    onChange={formik.handleChange}
-                    value={formik.values.rendszam}
+                    onChange={handleChange}
+                    value={values.rendszam}
                   />
+                <FormErrorMessage>{errors.rendszam}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.marka}>
                   <FormLabel htmlFor="marka">Márka</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -109,12 +94,13 @@ export default function AddCar() {
                     type="string"
                     variant="filled"
                     className="form-control"
-                    onChange={formik.handleChange}
-                    value={formik.values.marka}
+                    onChange={handleChange}
+                    value={values.marka}
                   />
+                  <FormErrorMessage>{errors.marka}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.tipus}>
                   <FormLabel htmlFor="tipus">Típus</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -123,12 +109,13 @@ export default function AddCar() {
                     type="string"
                     variant="filled"
                     className="form-control"
-                    onChange={formik.handleChange}
-                    value={formik.values.tipus}
+                    onChange={handleChange}
+                    value={values.tipus}
                   />
+                  <FormErrorMessage>{errors.tipus}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.evjarat}>
                   <FormLabel htmlFor="evjarat">Évjárat</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -136,12 +123,13 @@ export default function AddCar() {
                     name="evjarat"
                     type="number"
                     variant="filled"
-                    onChange={formik.handleChange}
-                    value={formik.values.evjarat}
+                    onChange={handleChange}
+                    value={values.evjarat}
                   />
+                  <FormErrorMessage>{errors.evjarat}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.motorterfogat}>
                   <FormLabel htmlFor="motorterfogat">Motortérfogat</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -149,12 +137,13 @@ export default function AddCar() {
                     name="motorterfogat"
                     type="number"
                     variant="filled"
-                    onChange={formik.handleChange}
-                    value={formik.values.motorterfogat}
+                    onChange={handleChange}
+                    value={values.motorterfogat}
                   />
+                  <FormErrorMessage>{errors.motorterfogat}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.uzemanyagfajta}>
                   <FormLabel htmlFor="uzemanyagfajta">Üzemanyag</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -162,12 +151,13 @@ export default function AddCar() {
                     name="uzemanyagfajta"
                     type="string"
                     variant="filled"
-                    onChange={formik.handleChange}
-                    value={formik.values.uzemanyagfajta}
+                    onChange={handleChange}
+                    value={values.uzemanyagfajta}
                   />
+                  <FormErrorMessage>{errors.uzemanyagfajta}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.km_allas}>
                   <FormLabel htmlFor="km_allas">Futásteljesítmény</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -175,12 +165,13 @@ export default function AddCar() {
                     name="km_allas"
                     type="number"
                     variant="filled"
-                    onChange={formik.handleChange}
-                    value={formik.values.km_allas}
+                    onChange={handleChange}
+                    value={values.km_allas}
                   />
+                  <FormErrorMessage>{errors.km_allas}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.szin}>
                   <FormLabel htmlFor="szin">Szín</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -188,12 +179,13 @@ export default function AddCar() {
                     name="szin"
                     type="string"
                     variant="filled"
-                    onChange={formik.handleChange}
-                    value={formik.values.szin}
+                    onChange={handleChange}
+                    value={values.szin}
                   />
+                  <FormErrorMessage>{errors.szin}</FormErrorMessage>
                 </FormControl>
 
-                <FormControl>
+                <FormControl isInvalid={!!errors.ar}>
                   <FormLabel htmlFor="ar">Ár</FormLabel>
                   <Input
                     bgColor = "gray.50"
@@ -201,9 +193,10 @@ export default function AddCar() {
                     name="ar"
                     type="number"
                     variant="filled"
-                    onChange={formik.handleChange}
-                    value={formik.values.ar}
+                    onChange={handleChange}
+                    value={values.ar}
                   />
+                  <FormErrorMessage>{errors.ar}</FormErrorMessage>
                 </FormControl>
                 <Link href={'/show'}>
                 <Button 
